@@ -5,7 +5,9 @@ import android.os.Bundle
 import com.example.assignmentnewsapp.databinding.ActivityMainBinding
 import com.example.assignmentnewsapp.utils.Constants
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+ @AndroidEntryPoint
  class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 

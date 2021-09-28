@@ -5,6 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.assignmentnewsapp.networking.retrofit.ApiHelper
 import com.example.assignmentnewsapp.ui.fragments.allnews.AllNewsViewModel
 
+
+//USED IN PREVIOUS VERSION "NEWS APP WITHOUT HILT"
+//NOT IN USE AS HILT PROVIDING THE VIEW MODEL INJECTION
+
 class ViewModelProviderFactory(private val apiHelper: ApiHelper) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

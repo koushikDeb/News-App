@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -18,12 +19,13 @@ import com.example.assignmentnewsapp.networking.retrofit.RetrofitBuilder
 import com.example.assignmentnewsapp.ui.base.ViewModelProviderFactory
 
 import com.example.assignmentnewsapp.utils.Status.*
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AllNewsFragment : Fragment() {
-    private lateinit var viewModel: AllNewsViewModel
+    private  val viewModel: AllNewsViewModel by viewModels()
     private lateinit var adapter: AllNewsAdapter
-    lateinit var binding: FragmentAllNewsBinding;
+    lateinit var binding: FragmentAllNewsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding= FragmentAllNewsBinding.inflate(inflater,container,false)
@@ -52,7 +54,7 @@ class AllNewsFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModel =ViewModelProvider(requireActivity(),ViewModelProviderFactory(ApiHelper(RetrofitBuilder.apiService))).get(AllNewsViewModel::class.java)
+      //  viewModel =ViewModelProvider(requireActivity(),ViewModelProviderFactory(ApiHelper(RetrofitBuilder.apiService))).get(AllNewsViewModel::class.java)
     }
 
     private fun setupObservers() {

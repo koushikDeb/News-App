@@ -4,6 +4,8 @@ import com.example.assignmentnewsapp.utils.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+//USED IN PREVIOUS VERSION "NEWS APP WITHOUT HILT"
+//NOT IN USE AS HILT PROVIDING THE DEPENDENCY FOR RetrofitBuilder
 object RetrofitBuilder {
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
