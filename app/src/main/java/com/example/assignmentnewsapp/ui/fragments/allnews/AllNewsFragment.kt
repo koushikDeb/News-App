@@ -1,89 +1,60 @@
 package com.example.assignmentnewsapp.ui.fragments.allnews
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.assignmentnewsapp.R
 import com.example.assignmentnewsapp.databinding.FragmentAllNewsBinding
-import com.example.assignmentnewsapp.networking.model.Response
-import com.example.assignmentnewsapp.networking.retrofit.ApiHelper
-import com.example.assignmentnewsapp.networking.retrofit.RetrofitBuilder
-import com.example.assignmentnewsapp.ui.base.ViewModelProviderFactory
+import com.example.assignmentnewsapp.ui.base.BaseFragment
+import com.example.assignmentnewsapp.ui.fragments.allnews.loadState.ReposLoadStateAdapter
+import com.example.assignmentnewsapp.utils.Constants.Companion.fromDate
+import com.example.assignmentnewsapp.utils.Constants.Companion.query
+import com.example.assignmentnewsapp.utils.Constants.Companion.toDate
+import com.example.assignmentnewsapp.utils.NewsAppBindingAdapters.booleanVisibility
 
-import com.example.assignmentnewsapp.utils.Status.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AllNewsFragment : Fragment() {
-    private  val viewModel: AllNewsViewModel by viewModels()
-    private lateinit var adapter: AllNewsAdapter
-    lateinit var binding: FragmentAllNewsBinding
+class AllNewsFragment : BaseFragment<AllNewsViewModel,FragmentAllNewsBinding>(FragmentAllNewsBinding::inflate) {
+  private val viewModel: AllNewsViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding= FragmentAllNewsBinding.inflate(inflater,container,false)
 
-        return binding.root
+  private fun setupUI() {
+    binding?.recyclerView?.layoutManager = LinearLayoutManager(activity)
+    binding?.recyclerView?.adapter = AllNewsAdapter()
+    bindFooter()
+  }
+
+
+  private fun bindFooter()
+  {
+    val newsAdapter =(binding?.recyclerView?.adapter as AllNewsAdapter)
+    newsAdapter.withLoadStateFooter(ReposLoadStateAdapter{newsAdapter.retry()})
+  }
+
+  override fun setupObservers() {
+
+    // viewLifecycleOwner.lifecycleScope.launch {
+    //   (binding?.recyclerView?.adapter as AllNewsAdapter).loadStateFlow.collectLatest { loadStates ->
+    //     binding?.progressBar?.booleanVisibility(loadStates.refresh is LoadState.Loading)
+    //   }
+    // }
+
+    lifecycleScope.launch {
+      viewModel.getListData(query,fromDate,toDate).collectLatest {
+        binding?.recyclerView?.visibility = View.VISIBLE
+        (binding?.recyclerView?.adapter as AllNewsAdapter).submitData(it)
+      }
     }
+  }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupViewModel()
-        setupUI()
-        setupObservers()
+  override fun provideViewModel() = viewModel
 
-    }
-
-    private fun setupUI() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = AllNewsAdapter(arrayListOf())
-        binding.recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                binding.recyclerView.context,
-                (binding.recyclerView.layoutManager as LinearLayoutManager).orientation
-            )
-        )
-        binding.recyclerView.adapter = adapter
-    }
-
-    private fun setupViewModel() {
-      //  viewModel =ViewModelProvider(requireActivity(),ViewModelProviderFactory(ApiHelper(RetrofitBuilder.apiService))).get(AllNewsViewModel::class.java)
-    }
-
-    private fun setupObservers() {
-        viewModel.getNews().observe(viewLifecycleOwner) { it ->
-            it?.let { resource ->
-                when (resource.status) {
-                    SUCCESS -> {
-                        binding.recyclerView.visibility = View.VISIBLE
-                        binding.progressBar.visibility = View.GONE
-                        resource.data?.let { news -> retrieveList(news as Response) }
-                    }
-                    ERROR -> {
-                        binding.recyclerView.visibility = View.VISIBLE
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
-                    }
-                    LOADING -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                        binding.recyclerView.visibility = View.GONE
-                    }
-                }
-            }
-        }
-    }
-
-    private fun retrieveList(news: Response) {
-        adapter.apply {
-            addNews(news.articles)
-            notifyDataSetChanged()
-        }
-    }
+  override fun setupView(view: View) {
+    setupUI()
+  }
 }

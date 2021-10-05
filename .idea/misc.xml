@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24293785310734464" />
         <entry key="app/src/main/res/layout/all_news_row.xml" value="0.2015625" />
+        <entry key="app/src/main/res/layout/footer_loading_state.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/layout/fragment_all_news.xml" value="0.2015625" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/fragment_country_news.xml" value="0.2015625" />
