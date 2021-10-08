@@ -7,13 +7,12 @@ class Constants {
     const val BASE_URL = "https://newsapi.org/v2/"
     const val TOPIC_EVERYTHING = "everything"
 
-
     //Allnews values to fetch
     const val fromDate = "2021-09-27"
     const val toDate = "2021-09-2"
     const val query = "apple"
-
-
+    var newsID:Long = 0
+    const val DEFAULT_PAGE_INDEX =5
 
   }
 }

@@ -12,6 +12,7 @@ interface ApiService {
     @Query("from") fromDate: String,
     @Query("to") toDate: String,
     @Query("apiKey") apikey: String,
-    @Query("page") page: Int
+    @Query("page") page: Int,
+    @Query("pageSize") pagesize: Int
   ): Response
 }

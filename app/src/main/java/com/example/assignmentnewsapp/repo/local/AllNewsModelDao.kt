@@ -18,4 +18,6 @@ interface AllNewsModelDao {
   @Query("DELETE FROM Article")
   suspend fun clearAllNews()
 
+  @Query("SELECT * FROM Article")
+  suspend fun getAll():List<Article>
 }

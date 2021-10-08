@@ -9,29 +9,28 @@ import androidx.room.TypeConverters
 import com.example.assignmentnewsapp.networking.model.Article
 import com.example.assignmentnewsapp.utils.RoomTypeConverters
 
-@Database(version = 1, entities = [Article::class], exportSchema = false)
+@Database(version = 1, entities = [Article::class, RemoteKeys::class], exportSchema = false)
 @TypeConverters(RoomTypeConverters::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    // abstract fun getRepoDao(): RemoteKeysDao
-    abstract fun getAllNewsModelDao(): AllNewsModelDao
+   abstract fun getRepoDao(): RemoteKeysDao
+   abstract fun getAllNewsModelDao(): AllNewsModelDao
 
-    companion object {
+  companion object {
 
-        val NEWS_DB = "news.db"
+    val NEWS_DB = "news.db"
 
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
+    @Volatile
+    private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE
-                    ?: buildDatabase(context).also { INSTANCE = it }
-            }
+    fun getInstance(context: Context): AppDatabase =
+      INSTANCE ?: synchronized(this) {
+        INSTANCE
+          ?: buildDatabase(context).also { INSTANCE = it }
+      }
 
-        private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, NEWS_DB)
-                .build()
-    }
-
+    private fun buildDatabase(context: Context) =
+      Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, NEWS_DB)
+        .build()
+  }
 }

@@ -10,23 +10,23 @@ import com.example.assignmentnewsapp.R
 
 object NewsAppBindingAdapters {
 
-
-    @BindingAdapter("booleanVisibility")
-    @JvmStatic
-    fun ProgressBar.booleanVisibility(visibility: Boolean) {
-      if (visibility) {
-        this.visibility = View.VISIBLE
-      } else {
-        this.visibility = View.GONE
-      }
+  @BindingAdapter("booleanVisibility")
+  @JvmStatic
+  fun ProgressBar.booleanVisibility(visibility: Boolean) {
+    if (visibility) {
+      this.visibility = View.VISIBLE
+    } else {
+      this.visibility = View.GONE
     }
+  }
 
   @BindingAdapter("loadImage")
   @JvmStatic
   fun AppCompatImageView.loadImage(imageUrl: String?) {
-    imageUrl?.let { Log.d("imageUrl", it)
+    imageUrl?.let {
+      Log.d("imageUrl", it)
       Glide.with(this.context).load(imageUrl).centerCrop()
-        .into(this)}
-
+        .into(this)
     }
+  }
 }

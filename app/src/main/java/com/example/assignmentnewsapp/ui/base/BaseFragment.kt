@@ -18,17 +18,18 @@ import javax.inject.Inject
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-abstract class BaseFragment<VM:BaseViewModel, B: ViewDataBinding>(
+abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding>(
   private val inflate: Inflate<B>
-): Fragment() {
-
+) : Fragment() {
 
   protected abstract fun provideViewModel(): VM
 
+  var binding: B? = null
 
-    var binding: B? = null
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+  override fun onViewCreated(
+    view: View,
+    savedInstanceState: Bundle?
+  ) {
     super.onViewCreated(view, savedInstanceState)
     setupView(view)
     setupObservers()
@@ -45,11 +46,12 @@ abstract class BaseFragment<VM:BaseViewModel, B: ViewDataBinding>(
 
   protected open fun setupObservers() {
     provideViewModel().commonMessageChannel.observe(viewLifecycleOwner, Observer {
-      Log.d(TAG,it)
+      Log.d(TAG, it)
     })
   }
 
-  private fun showMessage(message: String) = context?.let { Toast.makeText(it, message, Toast.LENGTH_SHORT).show() }
+  private fun showMessage(message: String) =
+    context?.let { Toast.makeText(it, message, Toast.LENGTH_SHORT).show() }
 
   fun showMessage(@StringRes resId: Int) = showMessage(getString(resId))
 

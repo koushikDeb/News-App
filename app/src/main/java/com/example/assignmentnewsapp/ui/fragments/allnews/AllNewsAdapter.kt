@@ -9,9 +9,7 @@ import com.example.assignmentnewsapp.databinding.AllNewsRowBinding
 import com.example.assignmentnewsapp.networking.model.Article
 import com.example.assignmentnewsapp.ui.fragments.allnews.AllNewsAdapter.DataViewHolder
 
-
-
-class AllNewsAdapter() : PagingDataAdapter<Article,DataViewHolder>(ArticlesDifferntiator) {
+class AllNewsAdapter() : PagingDataAdapter<Article, DataViewHolder>(ArticlesDifferntiator) {
 
   class DataViewHolder(val allNewsRowBinding: AllNewsRowBinding) : RecyclerView.ViewHolder(
     allNewsRowBinding.root
@@ -27,8 +25,6 @@ class AllNewsAdapter() : PagingDataAdapter<Article,DataViewHolder>(ArticlesDiffe
     return DataViewHolder(allNewsRowBinding)
   }
 
-
-
   override fun onBindViewHolder(
     holder: DataViewHolder,
     position: Int
@@ -36,15 +32,20 @@ class AllNewsAdapter() : PagingDataAdapter<Article,DataViewHolder>(ArticlesDiffe
     holder.allNewsRowBinding.article = getItem(position)
   }
 
-
   object ArticlesDifferntiator : DiffUtil.ItemCallback<Article>() {
 
-    override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-      return oldItem.title == newItem.title
+    override fun areItemsTheSame(
+      oldItem: Article,
+      newItem: Article
+    ): Boolean {
+      return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-      return oldItem == newItem
+    override fun areContentsTheSame(
+      oldItem: Article,
+      newItem: Article
+    ): Boolean {
+      return oldItem.id == newItem.id
     }
   }
 }

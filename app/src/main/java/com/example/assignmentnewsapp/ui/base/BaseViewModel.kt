@@ -9,5 +9,4 @@ open abstract class BaseViewModel : ViewModel() {
   val _showProgressBar = MutableLiveData<Boolean>()
 
   fun getStringRes(id: Int) = MyApp.res.getString(id)
-
 }
