@@ -3,7 +3,8 @@ package com.example.assignmentnewsapp.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.assignmentnewsapp.ui.fragments.*
+import com.example.assignmentnewsapp.ui.fragments.BlankFragment
+import com.example.assignmentnewsapp.ui.fragments.CountryNewsFragment
 import com.example.assignmentnewsapp.ui.fragments.allnews.AllNewsFragment
 import com.example.assignmentnewsapp.ui.fragments.topHeadlines.HeadlinesFragment
 import com.example.assignmentnewsapp.utils.Constants

@@ -1,7 +1,7 @@
 package com.example.assignmentnewsapp.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.assignmentnewsapp.databinding.ActivityMainBinding
 import com.example.assignmentnewsapp.utils.Constants
 import com.google.android.material.tabs.TabLayoutMediator

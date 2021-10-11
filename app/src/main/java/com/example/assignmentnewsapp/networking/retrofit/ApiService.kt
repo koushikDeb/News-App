@@ -1,6 +1,6 @@
 package com.example.assignmentnewsapp.networking.retrofit
 
-import com.example.assignmentnewsapp.networking.model.Response
+import com.example.assignmentnewsapp.data.model.allnews.Response
 import com.example.assignmentnewsapp.utils.Constants.Companion.TOPIC_EVERYTHING
 import retrofit2.http.GET
 import retrofit2.http.Query

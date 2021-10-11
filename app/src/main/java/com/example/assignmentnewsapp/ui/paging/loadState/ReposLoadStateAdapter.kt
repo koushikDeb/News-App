@@ -1,4 +1,4 @@
-package com.example.assignmentnewsapp.ui.fragments.allnews.loadState
+package com.example.assignmentnewsapp.ui.paging.loadState
 
 import android.view.ViewGroup
 import androidx.paging.LoadState

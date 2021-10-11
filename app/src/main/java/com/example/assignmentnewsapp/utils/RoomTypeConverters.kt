@@ -1,7 +1,7 @@
 package com.example.assignmentnewsapp.utils
 
 import androidx.room.TypeConverter
-import com.example.assignmentnewsapp.networking.model.Source
+import com.example.assignmentnewsapp.data.model.allnews.Source
 
 class RoomTypeConverters {
   @TypeConverter

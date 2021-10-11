@@ -6,7 +6,6 @@ import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.example.assignmentnewsapp.R
 
 object NewsAppBindingAdapters {
 

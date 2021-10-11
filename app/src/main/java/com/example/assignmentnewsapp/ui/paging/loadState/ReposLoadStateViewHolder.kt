@@ -1,15 +1,12 @@
-package com.example.assignmentnewsapp.ui.fragments.allnews.loadState
+package com.example.assignmentnewsapp.ui.paging.loadState
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignmentnewsapp.R
-import com.example.assignmentnewsapp.databinding.AllNewsRowBinding
 import com.example.assignmentnewsapp.databinding.FooterLoadingStateBinding
-import com.example.assignmentnewsapp.ui.fragments.allnews.AllNewsAdapter.DataViewHolder
 
 class ReposLoadStateViewHolder(
   private val binding: FooterLoadingStateBinding,

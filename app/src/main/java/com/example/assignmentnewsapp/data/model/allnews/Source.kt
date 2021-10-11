@@ -9,22 +9,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
-package com.example.assignmentnewsapp.networking.model
+package com.example.assignmentnewsapp.data.model.allnews
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity
-data class Article(
-  @PrimaryKey(autoGenerate = true)
-  var id: Long,
-  @SerializedName("source") val source: Source?,
-  @SerializedName("author") val author: String?,
-  @SerializedName("title") val title: String?,
-  @SerializedName("description") val description: String?,
-  @SerializedName("url") val url: String?,
-  @SerializedName("urlToImage") val urlToImage: String?,
-  @SerializedName("publishedAt") val publishedAt: String?,
-  @SerializedName("content") val content: String?
+data class Source(
+
+  @SerializedName("id") val id: String,
+  @SerializedName("name") val name: String
 )

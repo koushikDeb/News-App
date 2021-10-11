@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.assignmentnewsapp.data.model.allnews.Article
 import com.example.assignmentnewsapp.databinding.AllNewsRowBinding
-import com.example.assignmentnewsapp.networking.model.Article
 import com.example.assignmentnewsapp.ui.fragments.allnews.AllNewsAdapter.DataViewHolder
 
 class AllNewsAdapter() : PagingDataAdapter<Article, DataViewHolder>(ArticlesDifferntiator) {

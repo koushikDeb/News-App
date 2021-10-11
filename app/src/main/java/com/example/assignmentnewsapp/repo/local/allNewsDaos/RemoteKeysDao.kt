@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.assignmentnewsapp.repo.local
+package com.example.assignmentnewsapp.repo.local.allNewsDaos
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -24,15 +24,15 @@ import androidx.room.Query
 @Dao
 interface RemoteKeysDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(remoteKey: List<RemoteKeys>)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insertAll(remoteKey: List<RemoteKeys>)
 
-    @Query("SELECT * FROM remote_keys WHERE repoId = :repoId")
-    suspend fun remoteKeysRepoId(repoId: Long): RemoteKeys?
+  @Query("SELECT * FROM remote_keys WHERE repoId = :repoId")
+  suspend fun remoteKeysRepoId(repoId: Int): RemoteKeys?
 
-    @Query("SELECT * FROM remote_keys")
-    suspend fun getAllKey(): List<RemoteKeys>?
+  @Query("SELECT * FROM remote_keys")
+  suspend fun getAllKey(): List<RemoteKeys>?
 
-    @Query("DELETE FROM remote_keys")
-    suspend fun clearRemoteKeys()
+  @Query("DELETE FROM remote_keys")
+  suspend fun clearRemoteKeys()
 }

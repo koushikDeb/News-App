@@ -10,5 +10,5 @@ class ApiHelper @Inject constructor(private val apiService: ApiService) {
     toDate: String,
     page: Int,
     pageSize: Int
-  ) = apiService.getNews(query, fromDate, toDate, Constants.NEWS_API, page,pageSize).articles
+  ) = apiService.getNews(query, fromDate, toDate, Constants.NEWS_API, page, pageSize).articles
 }
